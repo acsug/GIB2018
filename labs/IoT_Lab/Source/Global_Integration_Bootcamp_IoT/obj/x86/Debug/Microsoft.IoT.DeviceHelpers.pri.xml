@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="Microsoft.IoT.DeviceHelpers" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="Microsoft.IoT.DeviceHelpers">
+				<ResourceMapSubtree name="Properties">
+					<NamedResource name="Microsoft.IoT.DeviceHelpers.rd.xml" uri="ms-resource://Microsoft.IoT.DeviceHelpers/Files/Microsoft.IoT.DeviceHelpers/Properties/Microsoft.IoT.DeviceHelpers.rd.xml">
+						<Candidate type="Path">
+							<Value>Microsoft.IoT.DeviceHelpers\Properties\Microsoft.IoT.DeviceHelpers.rd.xml</Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+		<ResourceMapSubtree name="Microsoft.IoT.DeviceHelpers">
+			<ResourceMapSubtree name="Strings">
+				<NamedResource name="DeviceNotFound" uri="ms-resource://Microsoft.IoT.DeviceHelpers/Microsoft.IoT.DeviceHelpers/Strings/DeviceNotFound">
+					<Candidate type="String">
+						<Value>The device '{0}' could not be found</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="IOChangeState" uri="ms-resource://Microsoft.IoT.DeviceHelpers/Microsoft.IoT.DeviceHelpers/Strings/IOChangeState">
+					<Candidate type="String">
+						<Value>The requested IO change is not supported in the current state</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="MissingRequiredIO" uri="ms-resource://Microsoft.IoT.DeviceHelpers/Microsoft.IoT.DeviceHelpers/Strings/MissingRequiredIO">
+					<Candidate type="String">
+						<Value>The required IO device property '{0}' has not been assigned</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="MissingTemplateElement" uri="ms-resource://Microsoft.IoT.DeviceHelpers/Microsoft.IoT.DeviceHelpers/Strings/MissingTemplateElement">
+					<Candidate type="String">
+						<Value>The element {'0'} is missing from the '{1}' template</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

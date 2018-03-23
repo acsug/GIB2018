@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="Microsoft.IoT.Devices" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Microsoft.IoT.Devices">
+			<ResourceMapSubtree name="Strings">
+				<NamedResource name="UnknownDisplayType" uri="ms-resource://Microsoft.IoT.Devices/Microsoft.IoT.Devices/Strings/UnknownDisplayType">
+					<Candidate type="String">
+						<Value>Unknown display type '{0}'</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

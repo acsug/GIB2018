@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="Microsoft.IoT.DeviceCore" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="Microsoft.IoT.DeviceCore">
+				<NamedResource name="Microsoft.IoT.DeviceCore.xr.xml" uri="ms-resource://Microsoft.IoT.DeviceCore/Files/Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore.xr.xml">
+					<Candidate type="Path">
+						<Value>Microsoft.IoT.DeviceCore\Microsoft.IoT.DeviceCore.xr.xml</Value>
+					</Candidate>
+				</NamedResource>
+				<ResourceMapSubtree name="Themes">
+					<NamedResource name="Generic.xaml" uri="ms-resource://Microsoft.IoT.DeviceCore/Files/Microsoft.IoT.DeviceCore/Themes/Generic.xaml">
+						<Candidate type="Path">
+							<Value>Microsoft.IoT.DeviceCore\Themes\Generic.xaml</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="Generic.xbf" uri="ms-resource://Microsoft.IoT.DeviceCore/Files/Microsoft.IoT.DeviceCore/Themes/Generic.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+		<ResourceMapSubtree name="Microsoft.IoT.DeviceCore">
+			<ResourceMapSubtree name="Strings">
+				<NamedResource name="AlreadySubscribed" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/AlreadySubscribed">
+					<Candidate type="String">
+						<Value>Already subscribed</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="ElementNotRendered" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/ElementNotRendered">
+					<Candidate type="String">
+						<Value>WARNING: {0} with name '{1}' is collapsed or not loaded and cannot be rendered. Instead of collapsing the element try setting Opacity to 0.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="ExistingUpdateAction" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/ExistingUpdateAction">
+					<Candidate type="String">
+						<Value>An existing update action has already been scheduled and cannot be changed</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="InvalidSubscriberType" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/InvalidSubscriberType">
+					<Candidate type="String">
+						<Value>Subscriber must be of type Action or Func&lt;Task&gt;</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="MissingTemplateElement" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/MissingTemplateElement">
+					<Candidate type="String">
+						<Value>The element {'0'} is missing from the '{1}' template</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="NoUpdateAction" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/NoUpdateAction">
+					<Candidate type="String">
+						<Value>The update action must first be specified by calling SetUpdateAction or SetAsyncUpdateAction</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="SubscriptionNotFound" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/SubscriptionNotFound">
+					<Candidate type="String">
+						<Value>Subscription not found</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="UnknownPixelFormat" uri="ms-resource://Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore/Strings/UnknownPixelFormat">
+					<Candidate type="String">
+						<Value>Unknown pixel format '{0}'</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>
