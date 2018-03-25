@@ -1,0 +1,174 @@
+/*
+  Job Name: Orders Report
+*/
+
+USE DATABASE [DocumentsADLDB];
+
+CREATE ASSEMBLY IF NOT EXISTS [Newtonsoft.Json] FROM "Assemblies/JSON/Newtonsoft.Json.dll";
+CREATE ASSEMBLY IF NOT EXISTS [Microsoft.Analytics.Samples.Formats] FROM "Assemblies/JSON/Microsoft.Analytics.Samples.Formats.dll";
+
+REFERENCE ASSEMBLY [Newtonsoft.Json];
+REFERENCE ASSEMBLY [Microsoft.Analytics.Samples.Formats];
+
+USING Microsoft.Analytics.Samples.Formats.Json;
+
+DECLARE @customerInputPath string = "/Documents/Customer/{filename}.json";
+DECLARE @productInputPath string = "/Documents/Product/{filename}.json";
+DECLARE @orderInputPath string = "/Documents/Order/{filename}.json";
+
+DECLARE @epoch DateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+DECLARE @today DateTime = DateTime.UtcNow.Date;
+
+DECLARE @outputPath string = string.Join("/", "/Documents/Output");
+
+////////////////////////////////////////////////////////////////////////
+// Phase 1 : Load all the data
+
+@rawCustomerData =
+    EXTRACT 
+         [id] string
+        ,[name] string
+        ,[deleted] string
+        ,date DateTime    //virtual column
+        ,filename string  //virtual column 
+    FROM @customerInputPath
+    USING new JsonExtractor();
+
+@rawProductData =
+    EXTRACT 
+         [id] string
+        ,[name] string
+        ,[cost] double
+        ,[tax] double
+        ,[deleted] string
+        ,date DateTime    //virtual column
+        ,filename string  //virtual column 
+    FROM @productInputPath
+    USING new JsonExtractor();
+
+@rawOrderData =
+    EXTRACT 
+         [id] string
+        ,[customer] string
+        ,[orderDate] string
+        ,[items] string
+        ,[totalCost] double
+        ,[totalTax] double
+        ,[deleted] string
+        ,date DateTime    //virtual column
+        ,filename string  //virtual column 
+    FROM @orderInputPath
+    USING new JsonExtractor();
+
+////////////////////////////////////////////////////////////////////////
+// Phase 2 : Process Customer documents
+
+@parsedCustomerJson =
+    SELECT 
+         [id] AS [customerId]
+        ,[name] AS [customerName]
+        ,[deleted] == "true" AS [deleted]
+    FROM @rawCustomerData;
+
+@customerDataSet =
+    SELECT
+         [customerId]
+        ,[customerName]
+    FROM @parsedCustomerJson
+    WHERE [deleted] == false;
+
+////////////////////////////////////////////////////////////////////////
+// Phase 3 : Process Product documents
+
+@parsedProductJson =
+    SELECT 
+         [id] AS [productId]
+        ,[name] AS [productName]
+        ,[cost]
+        ,[tax]
+        ,[deleted] == "true" AS [deleted]
+    FROM @rawProductData;
+
+@productDataSet =
+    SELECT
+         [productId]
+        ,[productName]
+        ,[cost]
+        ,[tax]
+    FROM @parsedProductJson
+    WHERE [deleted] == false;
+
+////////////////////////////////////////////////////////////////////////
+// Phase 4 : Process Order documents
+
+@parsedOrderJson =
+    SELECT 
+         [id] AS [orderId]
+        ,JsonFunctions.JsonTuple([customer])["id"] AS [customerId]
+        ,@epoch.AddSeconds(long.Parse(JsonFunctions.JsonTuple([orderDate])["epoch"] ?? "0")) AS [orderDate]
+        ,[totalCost]
+        ,[totalTax]
+        ,JsonFunctions.JsonTuple([items]).Values AS [itemsArr]
+        ,[deleted] == "true" AS [deleted]
+    FROM @rawOrderData;
+
+@orderDataSet =
+    SELECT
+         [orderId]
+        ,[customerId]
+        ,[orderDate]
+        ,JsonFunctions.JsonTuple(JsonFunctions.JsonTuple([item])["product"])["id"] AS [productId]
+        ,long.Parse(JsonFunctions.JsonTuple([item])["quantity"] ?? "0") AS [quantity]
+        ,double.Parse(JsonFunctions.JsonTuple([item])["totalCost"] ?? "0.00") AS [itemCost]
+        ,double.Parse(JsonFunctions.JsonTuple([item])["totalTax"] ?? "0.00") AS [itemTax]
+        ,[totalCost]
+        ,[totalTax]
+    FROM @parsedOrderJson
+        CROSS APPLY
+            EXPLODE([itemsArr]) AS T([item])
+    WHERE [deleted] == false;
+
+////////////////////////////////////////////////////////////////////////
+// Phase 5 : Create Report
+
+@resultsDataSet = 
+    SELECT
+         [order].[orderId]
+        ,[order].[orderDate]
+        ,[customer].[customerName]
+        ,[product].[productName]
+        ,[order].[quantity]
+        ,[order].[itemCost]
+        ,[order].[itemTax]
+        ,[order].[totalCost] AS [orderTotalCost]
+        ,[order].[totalTax] AS [orderTotalTax]
+    FROM @orderDataSet AS [order]
+        INNER JOIN @customerDataSet AS [customer]
+            ON [customer].[customerId] == [order].[customerId]
+        INNER JOIN @productDataSet AS [product]
+            ON [product].[productId] == [order].[productId];
+
+////////////////////////////////////////////////////////////////////////
+// Phase 99 : Create the output files
+
+/*
+OUTPUT @customerDataSet
+TO string.Join("/", @outputPath, "customers.txt")
+ORDER BY [customerName]
+USING Outputters.Csv(outputHeader:true, quoting:true);
+
+OUTPUT @productDataSet
+TO string.Join("/", @outputPath, "products.txt")
+ORDER BY [productName]
+USING Outputters.Csv(outputHeader:true, quoting:true);
+
+OUTPUT @orderDataSet
+TO string.Join("/", @outputPath, "orders.txt")
+ORDER BY [orderId]
+USING Outputters.Csv(outputHeader:true, quoting:true);
+*/
+
+OUTPUT @resultsDataSet
+TO string.Join("/", @outputPath, "orders_report.txt")
+ORDER BY [customerName], [orderId], [productName]
+USING Outputters.Csv(outputHeader:true, quoting:true);

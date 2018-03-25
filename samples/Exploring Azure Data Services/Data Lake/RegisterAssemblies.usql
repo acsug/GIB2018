@@ -1,0 +1,8 @@
+/*
+  Job Name: Register Assemblies
+*/
+
+USE DATABASE [DocumentsADLDB];
+
+CREATE ASSEMBLY [Newtonsoft.Json] FROM @"Assemblies/JSON/Newtonsoft.Json.dll";
+CREATE ASSEMBLY [Microsoft.Analytics.Samples.Formats] FROM @"Assemblies/JSON/Microsoft.Analytics.Samples.Formats.dll";
