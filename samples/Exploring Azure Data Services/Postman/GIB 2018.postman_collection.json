@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "cd29e7f7-b7d0-46cd-9dee-e64772556d43",
+		"name": "!GIB 2018",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"description": "",
+			"item": [
+				{
+					"name": "GET All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{HostName}}/api/customers",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Customers by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{HostName}}/api/customers?name=Grant",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Grant"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "272ba461-2be8-4fa0-8b67-c50c9ab20cab",
+								"type": "text/javascript",
+								"exec": [
+									"if(responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    ",
+									"    postman.setEnvironmentVariable(\"customer_id\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": \"http://gib2018.org\",\n    \"@type\": \"Customer\",\n    \"name\": \"Customer\"\n}"
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/customers",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63b76b65-55b6-4df7-963d-e48be6691a36",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": \"http://gib2018.org\",\n    \"@type\": \"Customer\",\n    \"id\": \"{{customer_id}}\",\n    \"name\": \"Customer 1\"\n}"
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/customers/{{customer_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"{{customer_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "565217fe-5b0c-401f-8b4d-2c2bba1af87e",
+								"type": "text/javascript",
+								"exec": [
+									"if(responseCode.code === 204)",
+									"{",
+									"    postman.setEnvironmentVariable(\"customer_id\", \"\");",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/customers/{{customer_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"{{customer_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"description": "",
+			"item": [
+				{
+					"name": "GET All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{HostName}}/api/products",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Products by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{HostName}}/api/products?name=Pro",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Pro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ccd69eb8-bd03-4ad4-9e82-bbebb53691bc",
+								"type": "text/javascript",
+								"exec": [
+									"if(responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    ",
+									"    postman.setEnvironmentVariable(\"product_id\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": \"http://gib2018.org\",\n    \"@type\": \"Product\",\n    \"name\": \"Product\",\n    \"cost\": 5.23,\n    \"tax\": 0.78\n}"
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/products",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63b76b65-55b6-4df7-963d-e48be6691a36",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": \"http://gib2018.org\",\n    \"@type\": \"Product\",\n    \"id\": \"{{product_id}}\",\n    \"name\": \"Product 1\",\n    \"cost\": 5.23,\n    \"tax\": 0.78\n}"
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/products/{{product_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3fc3d52-16fc-4125-8de7-6dd45c5493b8",
+								"type": "text/javascript",
+								"exec": [
+									"if(responseCode.code === 204)",
+									"{",
+									"    postman.setEnvironmentVariable(\"product_id\", \"\");",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/products/{{product_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"description": "",
+			"item": [
+				{
+					"name": "GET All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{HostName}}/api/orders",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Orders by Customer ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{HostName}}/api/orders?customer_id={{customer_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "{{customer_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6dcb8cc0-5fba-4140-b182-2fc5c3280e03",
+								"type": "text/javascript",
+								"exec": [
+									"if(responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    ",
+									"    postman.setEnvironmentVariable(\"order_id\", jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": \"http://gib2018.org\",\n    \"@type\": \"Order\",\n    \"customer\": {\n\t    \"@context\": \"http://gib2018.org\",\n\t    \"@type\": \"Order\",\n\t    \"id\": \"{{customer_id}}\"\n    },\n    \"items\":[\n    \t{\n    \t\t\"product\" : {\n\t\t\t    \"@context\": \"http://gib2018.org\",\n\t\t\t    \"@type\": \"Product\",\n\t\t\t    \"id\": \"{{product_id}}\"\n    \t\t},\n    \t\t\"quantity\": 98\n    \t}\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/orders",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63b76b65-55b6-4df7-963d-e48be6691a36",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@context\": \"http://gib2018.org\",\n    \"@type\": \"Order\",\n    \"id\": \"{{order_id}}\",\n    \"customer\": {\n        \"@context\": \"http://gib2018.org\",\n        \"@type\": \"Customer\",\n        \"id\": \"{{customer_id}}\"\n    },\n    \"items\":[\n    \t{\n    \t\t\"product\" : {\n\t\t\t    \"@context\": \"http://gib2018.org\",\n\t\t\t    \"@type\": \"Product\",\n\t\t\t    \"id\": \"{{product_id}}\"\n    \t\t},\n    \t\t\"quantity\": 9\n    \t}\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/orders/{{order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03ac88e6-ef9e-47f9-88f4-d0c9c9410489",
+								"type": "text/javascript",
+								"exec": [
+									"if(responseCode.code === 204)",
+									"{",
+									"    postman.setEnvironmentVariable(\"order_id\", \"\");",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{HostName}}/api/orders/{{order_id}}",
+							"protocol": "http",
+							"host": [
+								"{{HostName}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

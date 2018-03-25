@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="gib-2018-api-gch" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Release/netcoreapp2\.0/PubTmp/Out/$" />
+  </parameter>
+</parameters>

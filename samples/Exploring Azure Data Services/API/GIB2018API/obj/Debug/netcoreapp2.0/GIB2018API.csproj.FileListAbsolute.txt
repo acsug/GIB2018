@@ -1,0 +1,11 @@
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/bin/Debug/netcoreapp2.0/GIB2018API.deps.json
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/bin/Debug/netcoreapp2.0/GIB2018API.runtimeconfig.json
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/bin/Debug/netcoreapp2.0/GIB2018API.runtimeconfig.dev.json
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/bin/Debug/netcoreapp2.0/GIB2018API.dll
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/bin/Debug/netcoreapp2.0/GIB2018API.pdb
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Debug/netcoreapp2.0/GIB2018API.csprojResolveAssemblyReference.cache
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Debug/netcoreapp2.0/GIB2018API.csproj.CoreCompileInputs.cache
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Debug/netcoreapp2.0/GIB2018API.AssemblyInfoInputs.cache
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Debug/netcoreapp2.0/GIB2018API.AssemblyInfo.cs
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Debug/netcoreapp2.0/GIB2018API.dll
+/Users/grantharmer/Documents/Projects/GIB2018/API/GIB2018API/obj/Debug/netcoreapp2.0/GIB2018API.pdb
